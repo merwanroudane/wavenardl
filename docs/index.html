@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wavenardl — Wavelet-Based Nonlinear ARDL for Python</title>
+    <meta name="description" content="A comprehensive Python library for Wavelet-NARDL econometric modeling. Implements wavelet denoising, asymmetric cointegration, dynamic multipliers, and publication-quality diagnostics.">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>🌊</text></svg>">
+</head>
+<body>
+
+<!-- ═══════════ NAVIGATION ═══════════ -->
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="#" class="navbar-brand">
+      <div class="logo-icon">W</div>
+      wavenardl
+    </a>
+    <div class="navbar-links">
+      <a href="#features">Features</a>
+      <a href="#quickstart">Quick Start</a>
+      <a href="#example">Example</a>
+      <a href="#api">API</a>
+      <a href="https://github.com/merwanroudane/wavenardl" target="_blank">GitHub</a>
+      <a href="https://pypi.org/project/wavenardl/" target="_blank" class="btn-pypi">📦 PyPI</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge animate-in">
+      <span class="dot"></span>
+      Published on PyPI — v1.0.1
+    </div>
+    <h1 class="animate-in delay-1">wavenardl</h1>
+    <p class="subtitle animate-in delay-2">
+      Wavelet-Based Nonlinear ARDL (W-NARDL) for Python — a comprehensive library
+      implementing wavelet denoising, asymmetric cointegration testing, dynamic multipliers,
+      and publication-quality econometric analysis.
+    </p>
+    <p class="author-line animate-in delay-2">
+      Developed by <strong>Dr Merwan Roudane</strong>
+    </p>
+    <div class="hero-buttons animate-in delay-3">
+      <a href="#example" class="btn btn-primary">📖 Full Example</a>
+      <a href="https://github.com/merwanroudane/wavenardl" class="btn btn-secondary" target="_blank">⭐ GitHub</a>
+      <a href="#quickstart" class="btn btn-secondary">🚀 Quick Start</a>
+    </div>
+    <div class="install-banner animate-in delay-3">
+      <code>$ pip install wavenardl</code>
+      <button class="copy-btn" onclick="navigator.clipboard.writeText('pip install wavenardl');this.textContent='Copied!'">Copy</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ HERO IMAGE ═══════════ -->
+<section style="padding: 0 2rem 40px; background: linear-gradient(180deg, var(--bg) 0%, var(--bg-alt) 100%);">
+  <div class="container">
+    <div class="img-container" style="box-shadow: var(--shadow-xl);">
+      <img src="images/hero_timeseries.png" alt="Oil Prices & Exchange Rate Time Series">
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FEATURES ═══════════ -->
+<section id="features" class="features-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Comprehensive Econometric Toolkit</h2>
+      <p>Everything you need for nonlinear cointegration analysis in one package</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="icon" style="background: #EFF6FF; color: #2563EB;">🌊</div>
+        <h3>Wavelet Denoising</h3>
+        <p>Haar à Trous non-decimated wavelet transform (paper method) plus PyWavelets SWT/DWT integration with Donoho thresholding.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon" style="background: #F0FDF4; color: #059669;">📈</div>
+        <h3>NARDL Estimation</h3>
+        <p>Full nonlinear ARDL with asymmetric decomposition, automatic lag selection (AIC/BIC/HQ), and grid or quick search modes.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon" style="background: #FEF3C7; color: #D97706;">🧪</div>
+        <h3>PSS Bounds Test</h3>
+        <p>Pesaran-Shin-Smith (2001) bounds F-test for cointegration with asymptotic critical values for Cases I–V.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon" style="background: #FDF2F8; color: #E11D48;">⚖️</div>
+        <h3>Symmetry Tests</h3>
+        <p>Wald tests for long-run and short-run symmetry following Shin et al. (2014).</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon" style="background: #EDE9FE; color: #7C3AED;">📐</div>
+        <h3>Dynamic Multipliers</h3>
+        <p>Cumulative dynamic multipliers with bootstrap confidence intervals and long-run multipliers via delta method.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon" style="background: #ECFDF5; color: #059669;">🔄</div>
+        <h3>Error Correction</h3>
+        <p>Two-step ECM estimation with speed of adjustment, half-life computation, and stability checks.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon" style="background: #FFF7ED; color: #D97706;">🔍</div>
+        <h3>Full Diagnostics</h3>
+        <p>Breusch-Godfrey, Breusch-Pagan, Jarque-Bera, Ramsey RESET, CUSUM, CUSUMSQ — all in one call.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon" style="background: #F0F9FF; color: #0891B2;">📊</div>
+        <h3>Beautiful Plots</h3>
+        <p>Publication-quality visualizations: scalograms, multiplier curves, residual panels, coefficient comparisons.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon" style="background: #F5F3FF; color: #7C3AED;">📄</div>
+        <h3>Export Tables</h3>
+        <p>Generate publication-ready tables in LaTeX, HTML, and rich console formats for academic papers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ QUICK START ═══════════ -->
+<section id="quickstart" class="content-section alt">
+  <div class="container">
+    <h2>🚀 Quick Start</h2>
+
+    <h3>Installation</h3>
+    <pre><span class="cm"># Install from PyPI</span>
+<span class="fn">pip</span> install wavenardl
+
+<span class="cm"># Or install from source</span>
+<span class="fn">pip</span> install git+https://github.com/merwanroudane/wavenardl.git</pre>
+
+    <h3>Basic NARDL Example</h3>
+<pre><span class="kw">from</span> wavenardl <span class="kw">import</span> NARDL, pss_f_test, symmetry_test
+<span class="kw">import</span> pandas <span class="kw">as</span> pd
+
+<span class="cm"># Load your data</span>
+data = pd.read_csv(<span class="str">'economic_data.csv'</span>)
+
+<span class="cm"># Define NARDL model with asymmetric exchange rate</span>
+model = NARDL(
+    data=data,
+    formula=<span class="str">"oil ~ exrate + cpi + Asymmetric(exrate)"</span>,
+    maxlag=<span class="num">4</span>,
+    criterion=<span class="str">'BIC'</span>,
+    case=<span class="num">3</span>,
+)
+
+<span class="cm"># Estimate</span>
+results = model.fit(mode=<span class="str">'grid'</span>, verbose=<span class="kw">True</span>)
+results.summary()
+
+<span class="cm"># Cointegration test</span>
+pss = pss_f_test(results, case=<span class="num">3</span>)
+print(pss)
+
+<span class="cm"># Symmetry test</span>
+sym = symmetry_test(results)
+print(sym)</pre>
+
+    <h3>Wavelet NARDL Example</h3>
+<pre><span class="kw">from</span> wavenardl <span class="kw">import</span> WaveletNARDL
+
+<span class="cm"># W-NARDL with Haar à Trous denoising (paper method)</span>
+wmodel = WaveletNARDL(
+    data=data,
+    formula=<span class="str">"oil ~ exrate + Asymmetric(exrate)"</span>,
+    maxlag=<span class="num">4</span>,
+    wavelet_method=<span class="str">'htw'</span>,
+    n_levels=<span class="num">5</span>,
+)
+
+<span class="cm"># Fit and compare with standard NARDL</span>
+results = wmodel.fit(mode=<span class="str">'grid'</span>, fit_original=<span class="kw">True</span>)
+results[<span class="str">'comparison'</span>].summary()</pre>
+  </div>
+</section>
+
+<!-- ═══════════ FULL EXAMPLE ═══════════ -->
+<section id="example" class="content-section">
+  <div class="container">
+    <h2>📖 Full Application Example <span class="badge">with real data</span></h2>
+    <p>
+      This section demonstrates a complete W-NARDL analysis examining the
+      <strong>asymmetric exchange rate pass-through to crude oil prices</strong>,
+      following Jammazi, Lahiani &amp; Nguyen (2015).
+    </p>
+
+    <div class="note note-info">
+      <span class="icon">📓</span>
+      <p>The complete executable Jupyter notebook is available at
+        <a href="https://github.com/merwanroudane/wavenardl/blob/main/wavenardl_full_example.ipynb" target="_blank">
+        wavenardl_full_example.ipynb</a> on GitHub.</p>
+    </div>
+
+    <!-- ── 1. Exploratory Analysis ── -->
+    <h3>1. Exploratory Data Analysis</h3>
+    <p>
+      We analyze monthly economic data from 2000 to 2023, examining the relationship between 
+      Brent crude oil prices, the EUR/USD exchange rate, and the US Consumer Price Index.
+      The scatter plot (Panel C) clearly reveals <strong>asymmetric co-movement</strong> — 
+      the slope differs between exchange rate appreciations and depreciations.
+    </p>
+    <div class="img-container">
+      <img src="images/eda_panel.png" alt="Exploratory Data Analysis Panel">
+      <div class="img-caption">Exploratory analysis revealing asymmetric exchange rate–oil price dynamics</div>
+    </div>
+
+    <!-- ── 2. Wavelet Denoising ── -->
+    <h3>2. Wavelet Denoising</h3>
+    <p>
+      The Haar à Trous wavelet transform (HTW) decomposes the signal into smooth and detail coefficients.
+      Donoho's universal threshold is applied to remove noise while preserving the underlying dynamics.
+    </p>
+    <div class="formula">
+      s<sub>j+1</sub>(t) = ½ · [s<sub>j</sub>(t − 2<sup>j</sup>) + s<sub>j</sub>(t)]   &nbsp;&nbsp;|&nbsp;&nbsp;   
+      d<sub>j+1</sub>(t) = s<sub>j</sub>(t) − s<sub>j+1</sub>(t)   &nbsp;&nbsp;|&nbsp;&nbsp;   
+      λ = √(2σ² · log N)
+    </div>
+
+<pre><span class="kw">from</span> wavenardl <span class="kw">import</span> HaarATrousWavelet, plot_wavelet_decomposition
+
+htw = HaarATrousWavelet(n_levels=<span class="num">5</span>, threshold_method=<span class="str">'soft'</span>)
+analysis = htw.full_analysis(data[<span class="str">'oil'</span>].values, name=<span class="str">'Brent Oil'</span>)
+
+<span class="cm"># Decomposition levels, noise estimation, threshold</span>
+print(f<span class="str">"Noise σ: {analysis['sigma']:.6f}"</span>)
+print(f<span class="str">"Threshold λ: {analysis['threshold']:.6f}"</span>)
+
+plot_wavelet_decomposition(analysis)</pre>
+
+    <div class="img-container">
+      <img src="images/wavelet_decomp.png" alt="HTW Wavelet Decomposition">
+      <div class="img-caption">HTW wavelet decomposition — original vs denoised (smoothed) signal with 5 detail levels</div>
+    </div>
+
+    <p>Comparing three wavelet denoising methods: HTW (paper method), SWT, and DWT:</p>
+    <div class="img-container">
+      <img src="images/denoise_compare.png" alt="Denoising Methods Comparison">
+      <div class="img-caption">Comparison of wavelet denoising methods — the HTW paper method provides smooth denoising</div>
+    </div>
+
+    <!-- ── 3. Partial Sums ── -->
+    <h3>3. Partial Sum Decomposition</h3>
+    <p>
+      Following Shin et al. (2014), we decompose the exchange rate into positive and negative
+      partial sums to capture asymmetric dynamics:
+    </p>
+    <div class="formula">
+      x<sub>t</sub><sup>+</sup> = Σ<sub>j=1</sub><sup>t</sup> max(Δx<sub>j</sub>, 0)
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      x<sub>t</sub><sup>−</sup> = Σ<sub>j=1</sub><sup>t</sup> min(Δx<sub>j</sub>, 0)
+    </div>
+
+<pre><span class="kw">from</span> wavenardl <span class="kw">import</span> partial_sum_decomposition
+
+x_pos, x_neg = partial_sum_decomposition(data[<span class="str">'exrate'</span>].values)</pre>
+
+    <div class="img-container">
+      <img src="images/partial_sums.png" alt="Partial Sum Decomposition">
+      <div class="img-caption">Exchange rate decomposed into positive (blue) and negative (red) partial sums</div>
+    </div>
+
+    <!-- ── 4. NARDL Estimation ── -->
+    <h3>4. NARDL Estimation</h3>
+    <p>
+      The NARDL model is estimated with automatic lag selection via BIC grid search.
+      The coefficient chart uses color coding to show significance levels.
+    </p>
+
+<pre>model = NARDL(
+    data=data,
+    formula=<span class="str">"oil ~ exrate + cpi + Asymmetric(exrate) + deterministic(crisis)"</span>,
+    maxlag=<span class="num">4</span>,
+    criterion=<span class="str">'BIC'</span>,
+    case=<span class="num">3</span>,
+)
+results = model.fit(mode=<span class="str">'grid'</span>)
+results.summary()</pre>
+
+    <div class="img-container">
+      <img src="images/nardl_coefs.png" alt="NARDL Coefficient Estimates">
+      <div class="img-caption">NARDL coefficient estimates with 95% confidence intervals — color indicates significance level</div>
+    </div>
+
+    <!-- ── 5. PSS Bounds Test ── -->
+    <h3>5. PSS Bounds F-Test for Cointegration</h3>
+    <p>
+      The Pesaran-Shin-Smith (2001) bounds test checks for cointegration by testing
+      the joint significance of the lagged level variables. The F-statistic is compared
+      against I(0) and I(1) critical value bounds.
+    </p>
+
+<pre><span class="kw">from</span> wavenardl <span class="kw">import</span> pss_f_test, bounds_test_table
+
+pss = pss_f_test(results, case=<span class="num">3</span>)
+print(pss)
+print(bounds_test_table(pss))</pre>
+
+    <div class="img-container">
+      <img src="images/pss_bounds.png" alt="PSS Bounds F-Test">
+      <div class="img-caption">PSS bounds test — F-statistic (green dashed line) compared against critical values at multiple significance levels</div>
+    </div>
+
+    <!-- ── 6. Long-Run Multipliers ── -->
+    <h3>6. Long-Run Multipliers</h3>
+    <p>
+      Long-run multipliers measure the total equilibrium effect: L<sub>i</sub> = −θ<sub>i</sub>/ρ.
+      Standard errors are computed via the delta method.
+    </p>
+
+<pre><span class="kw">from</span> wavenardl <span class="kw">import</span> compute_long_run_multipliers, long_run_summary
+
+lr = compute_long_run_multipliers(results)
+long_run_summary(results)</pre>
+
+    <div class="img-container">
+      <img src="images/longrun_mult.png" alt="Long-Run Multipliers">
+      <div class="img-caption">Long-run multipliers with 95% CI — blue for positive effects, red for negative</div>
+    </div>
+
+    <!-- ── 7. Dynamic Multipliers ── -->
+    <h3>7. Dynamic Multipliers</h3>
+    <p>
+      The cumulative dynamic multipliers trace the adjustment path over time.
+      As h → ∞, they converge to the long-run multipliers. Bootstrap confidence intervals
+      test whether the asymmetry is statistically significant.
+    </p>
+
+<pre><span class="kw">from</span> wavenardl <span class="kw">import</span> DynamicMultipliers, bootstrap_multipliers, plot_multipliers
+
+dm = DynamicMultipliers(results, horizon=<span class="num">80</span>)
+dm.summary()
+
+<span class="cm"># With bootstrap CI</span>
+mpsi = bootstrap_multipliers(results, horizon=<span class="num">60</span>, replications=<span class="num">100</span>)
+plot_multipliers(mpsi, dep_var=<span class="str">'oil'</span>)</pre>
+
+    <div class="img-container">
+      <img src="images/dynamic_mult.png" alt="Cumulative Dynamic Multipliers">
+      <div class="img-caption">Cumulative dynamic multipliers showing asymmetric adjustment from positive (blue) and negative (red) shocks</div>
+    </div>
+
+    <!-- ── 8. Diagnostics ── -->
+    <h3>8. Diagnostic Tests</h3>
+    <p>
+      A comprehensive battery of diagnostic tests validates the model assumptions.
+      The 4-panel residual diagnostic plot and CUSUM/CUSUMSQ stability tests ensure model reliability.
+    </p>
+
+<pre><span class="kw">from</span> wavenardl <span class="kw">import</span> run_all_diagnostics, diagnostics_summary
+<span class="kw">from</span> wavenardl <span class="kw">import</span> plot_residual_diagnostics, plot_cusum
+
+diagnostics_summary(results)
+plot_residual_diagnostics(results)
+plot_cusum(results)</pre>
+
+    <div class="img-container">
+      <img src="images/residual_diag.png" alt="Residual Diagnostics">
+      <div class="img-caption">4-panel residual diagnostics: time series, histogram with KDE and normal overlay, Q-Q plot, and ACF correlogram</div>
+    </div>
+
+    <div class="img-container">
+      <img src="images/cusum.png" alt="CUSUM and CUSUMSQ Tests">
+      <div class="img-caption">CUSUM and CUSUMSQ structural stability tests with 5% significance bounds</div>
+    </div>
+
+    <!-- ── 9. Wavelet NARDL ── -->
+    <h3>9. Wavelet NARDL vs Standard NARDL</h3>
+    <p>
+      The <strong>W-NARDL</strong> model combines wavelet denoising with NARDL estimation.
+      It denoises all series before estimation, capturing the true underlying relationships.
+      Side-by-side comparison shows the impact of denoising on coefficient estimates.
+    </p>
+
+<pre><span class="kw">from</span> wavenardl <span class="kw">import</span> WaveletNARDL, plot_coefficient_comparison
+
+wmodel = WaveletNARDL(
+    data=data, formula=formula,
+    maxlag=<span class="num">4</span>, wavelet_method=<span class="str">'htw'</span>, n_levels=<span class="num">5</span>,
+)
+wr = wmodel.fit(mode=<span class="str">'grid'</span>, fit_original=<span class="kw">True</span>)
+wr[<span class="str">'comparison'</span>].summary()
+plot_coefficient_comparison(wr[<span class="str">'original'</span>], wr[<span class="str">'wavelet'</span>])</pre>
+
+    <div class="img-container">
+      <img src="images/wnardl_compare.png" alt="W-NARDL Coefficient Comparison">
+      <div class="img-caption">Coefficient comparison: Standard NARDL (left) vs Wavelet NARDL (right) — blue = significant at 5%</div>
+    </div>
+
+    <div class="img-container">
+      <img src="images/wnardl_dashboard.png" alt="W-NARDL Dashboard">
+      <div class="img-caption">Model fit comparison dashboard: R², AIC, and BIC — Standard vs Wavelet NARDL</div>
+    </div>
+
+    <!-- ── 10. Publication Tables ── -->
+    <h3>10. Publication-Quality Tables</h3>
+    <p>
+      Export results directly to LaTeX for academic papers, HTML for reports, or styled console output.
+    </p>
+
+<pre><span class="kw">from</span> wavenardl <span class="kw">import</span> summary_table, comparison_table, diagnostics_table
+
+<span class="cm"># LaTeX output</span>
+latex = summary_table(results, format=<span class="str">'latex'</span>)
+print(latex)
+
+<span class="cm"># HTML output</span>
+html = summary_table(results, format=<span class="str">'html'</span>)
+
+<span class="cm"># Comparison table</span>
+comp = comparison_table(wr[<span class="str">'original'</span>], wr[<span class="str">'wavelet'</span>], format=<span class="str">'latex'</span>)</pre>
+
+    <div class="note note-success">
+      <span class="icon">✅</span>
+      <p>The complete executable notebook with all 31 code cells and outputs is available on
+        <a href="https://github.com/merwanroudane/wavenardl/blob/main/wavenardl_full_example.ipynb" target="_blank">GitHub</a>.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════ API REFERENCE ═══════════ -->
+<section id="api" class="content-section alt">
+  <div class="container">
+    <h2>📚 API Reference</h2>
+
+    <h3>Core Classes</h3>
+
+    <div class="api-card">
+      <div class="api-name">NARDL(data, formula, maxlag=4, criterion='BIC', case=3)</div>
+      <div class="api-desc">Nonlinear ARDL model with asymmetric decomposition and automatic lag selection.</div>
+      <div class="api-params">
+        <strong>Methods:</strong> <code>.fit(mode='grid')</code> → <code>NARDLResults</code> |
+        <strong>Results:</strong> <code>.summary()</code>, <code>.coefficients</code>, <code>.residuals</code>, <code>.fitted_values</code>
+      </div>
+    </div>
+
+    <div class="api-card">
+      <div class="api-name">WaveletNARDL(data, formula, wavelet_method='htw', n_levels=None, ...)</div>
+      <div class="api-desc">Wavelet-based NARDL combining HTW/SWT/DWT denoising with NARDL estimation.</div>
+      <div class="api-params">
+        <strong>Returns:</strong> <code>dict</code> with <code>'wavelet'</code>, <code>'original'</code>, <code>'comparison'</code>, <code>'wavelet_analyses'</code>
+      </div>
+    </div>
+
+    <h3>Wavelet Module</h3>
+
+    <div class="api-card">
+      <div class="api-name">HaarATrousWavelet(n_levels=None, threshold_method='soft')</div>
+      <div class="api-desc">Non-decimated Haar à Trous wavelet — the paper method (Jammazi et al., 2015).</div>
+      <div class="api-params"><strong>Methods:</strong> <code>.decompose()</code>, <code>.denoise()</code>, <code>.full_analysis()</code></div>
+    </div>
+
+    <div class="api-card">
+      <div class="api-name">denoise_series(series, method='htw', n_levels=None)</div>
+      <div class="api-desc">One-line convenience function. Methods: 'htw', 'swt', 'dwt'.</div>
+    </div>
+
+    <div class="api-card">
+      <div class="api-name">denoise_dataframe(df, columns=None, method='htw', prefix='S')</div>
+      <div class="api-desc">Denoise multiple DataFrame columns at once.</div>
+    </div>
+
+    <h3>Statistical Tests</h3>
+
+    <div class="api-card">
+      <div class="api-name">pss_f_test(nardl_results, case=3)</div>
+      <div class="api-desc">PSS bounds F-test for cointegration (Pesaran et al., 2001).</div>
+    </div>
+
+    <div class="api-card">
+      <div class="api-name">symmetry_test(nardl_results)</div>
+      <div class="api-desc">Wald tests for long-run and short-run symmetry (Shin et al., 2014).</div>
+    </div>
+
+    <h3>Multipliers</h3>
+
+    <div class="api-card">
+      <div class="api-name">compute_long_run_multipliers(nardl_results)</div>
+      <div class="api-desc">Long-run coefficients L<sub>i</sub> = −θ<sub>i</sub>/ρ with delta method standard errors.</div>
+    </div>
+
+    <div class="api-card">
+      <div class="api-name">DynamicMultipliers(nardl_results, horizon=80)</div>
+      <div class="api-desc">Cumulative dynamic multipliers via omega recursion.</div>
+    </div>
+
+    <div class="api-card">
+      <div class="api-name">bootstrap_multipliers(nardl_results, horizon=80, replications=100)</div>
+      <div class="api-desc">Bootstrap confidence intervals for the asymmetry curve.</div>
+    </div>
+
+    <h3>Diagnostics &amp; ECM</h3>
+
+    <div class="api-card">
+      <div class="api-name">run_all_diagnostics(nardl_results)</div>
+      <div class="api-desc">DW, Breusch-Godfrey, Breusch-Pagan, Jarque-Bera, Shapiro-Wilk, Ramsey RESET.</div>
+    </div>
+
+    <div class="api-card">
+      <div class="api-name">estimate_ecm(data, formula, case=3, maxlag=4)</div>
+      <div class="api-desc">Two-step Error Correction Model with speed of adjustment.</div>
+    </div>
+
+    <h3>Visualization</h3>
+
+    <table class="styled-table">
+      <thead><tr><th>Function</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td><code>plot_wavelet_decomposition()</code></td><td>HTW decomposition: original vs denoised + detail levels</td></tr>
+        <tr><td><code>plot_scalogram()</code></td><td>Wavelet power spectrum heatmap</td></tr>
+        <tr><td><code>plot_multipliers()</code></td><td>Dynamic multiplier curves with bootstrap CI</td></tr>
+        <tr><td><code>plot_residual_diagnostics()</code></td><td>4-panel residual diagnostic plot</td></tr>
+        <tr><td><code>plot_cusum()</code></td><td>CUSUM and CUSUMSQ stability plots</td></tr>
+        <tr><td><code>plot_lag_criteria()</code></td><td>Information criteria across lag configurations</td></tr>
+        <tr><td><code>plot_coefficient_comparison()</code></td><td>Side-by-side coefficient charts</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ═══════════ REFERENCES ═══════════ -->
+<section class="content-section">
+  <div class="container">
+    <h2>📚 References</h2>
+    <div style="font-size: 0.9rem; line-height: 1.8; color: var(--text-secondary);">
+      <p>Jammazi, R., Lahiani, A., &amp; Nguyen, D. K. (2015). A wavelet-based nonlinear ARDL model for assessing the exchange rate pass-through to crude oil prices. <em>Journal of International Financial Markets, Institutions and Money</em>, 34, 173-187.</p>
+      <p>Shin, Y., Yu, B., &amp; Greenwood-Nimmo, M. (2014). Modelling asymmetric cointegration and dynamic multipliers in a nonlinear ARDL framework. <em>Festschrift in Honor of Peter Schmidt</em>, 281-314.</p>
+      <p>Pesaran, M. H., Shin, Y., &amp; Smith, R. (2001). Bounds testing approaches to the analysis of level relationships. <em>Journal of Applied Econometrics</em>, 16(3), 289-326.</p>
+      <p>Narayan, P. K. (2005). The saving and investment nexus for China. <em>Applied Economics</em>, 37(17), 1979-1990.</p>
+      <p>Donoho, D. L. (1995). De-noising by soft-thresholding. <em>IEEE Transactions on Information Theory</em>, 41, 613-627.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="footer">
+  <div class="footer-brand">🌊 wavenardl</div>
+  <p>Wavelet-Based Nonlinear ARDL for Python</p>
+  <div class="footer-links">
+    <a href="https://pypi.org/project/wavenardl/" target="_blank">PyPI</a>
+    <a href="https://github.com/merwanroudane/wavenardl" target="_blank">GitHub</a>
+    <a href="https://github.com/merwanroudane/wavenardl/blob/main/wavenardl_full_example.ipynb" target="_blank">Example Notebook</a>
+  </div>
+  <p style="margin-top: 16px; font-size: 0.82rem;">
+    Developed by <strong style="color: white;">Dr Merwan Roudane</strong> · 
+    MIT License · v1.0.1
+  </p>
+</footer>
+
+</body>
+</html>
